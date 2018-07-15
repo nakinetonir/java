@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chat</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+          var socket = io();
+          $('form').submit(function(){
+            socket.emit('chat message', $('#m').val(),$('#name').val());
+            $('#m').val('');
+            return false;
+          });
+          socket.on('chat message', function(msg){
+            $('#messages').append($('<li style="color:#e0a800">').text(msg));
+          });
+        });
+      </script>
+      <style>
+#button {
+ padding: 0;
+ }
+ #button li {
+ display: inline;
+ }
+#button li a {
+ font-family: Arial;
+ font-size: 11px;
+ text-decoration: none;
+ float: left;
+ padding: 10px;
+ background-color: #004531;
+ color: #fff;
+ }
+</style>
+</head>
+<body style="background-color:#212529;">
+<div>
+	<div>
+		<div class="col-md-4">
+				<button class="btn-warning" id="logo">Volver</button>
+			</div>
+	</div>
+	<div style="text-align:center;">
+	<video width="400" controls>
+  <source src="C:\Users\alumno\Downloads\es\eses\Apuestasdeportivascli\WebContent\videos\football.mp4" type="video/mp4">
+  </video>
+	</div>
+</div>
+<div style="text-align:center">
+<div class="container">
+<div class="row">
+<div class="col-md-6">
+<h3 style="color:#20B2AA" id="nameparrafo" class="rounded-circle"></h3>
+	 <form action="">
+	 <div class="form-group">
+      <div class="form-control" style="position:absolute;button:0%;">
+      <input id="name" type="text" class="form-control"/>
+      <input id="m" autocomplete="off" class="form-control"/><button class="btb btn-warning">Send</button>
+      </div>
+      </div>
+    </form>
+   </div>
+ <div class="col-md-6">
+    <ul id="messages" class="messages" style="list-style:none;text-align:center"></ul>
+     </div>
+   </div>
+   </div>
+   </div>
+   <script>
+    	$("#logo").click(function()
+    		{
+    			window.location="http://localhost/Apuestasdeportivascli/"
+    		}		
+    	)
+        $('#close').click(function()
+        {
+        	window.close();
+        });
+    </script>
+    
+</body>
+</html>
